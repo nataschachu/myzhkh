@@ -1,0 +1,35 @@
+body
+{
+    font-family: Arial, Helvetice, sans-serif;
+    font-size: 15px;
+}
+
+.meter-value
+{
+    display: block;
+    font-family: Helvetica,Arial,sans-serif;
+    -webkit-appearance: none;
+    width: 70%;
+    margin-top: 10px;
+    border: 1px solid #999;
+    padding: 2px;
+    height: 25px;
+    font-size: 16px;
+    border-radius: none;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.submit-button
+{
+    border-radius: 3px;
+    font-size: 16px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    padding: 10px 25px;
+    border: navy;
+    -webkit-appearance: none;
+}

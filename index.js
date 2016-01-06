@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var money = require('./money.js');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -11,6 +12,11 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index');
+});
+
+app.get('/get-money', function(request, response) {
+  //response.jsonp(money.get(request));
+  money.get(request, response);
 });
 
 app.listen(app.get('port'), function() {
