@@ -39,3 +39,9 @@ input
     width: 6em;
     margin-right: 4px;
 }
+
+.change,
+.save
+{
+    cursor: pointer;
+}
