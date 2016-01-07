@@ -1,8 +1,8 @@
-$('.change').live('mousedown', function(e) {
+$('.change').on('click', function(e) {
    $(e.target.parentNode).html('<input type="text"><span class="save">Сохранить</span>');
 });
 
-$('.save').live('mousedown', function(e) {
+$('.save').live('click', function(e) {
     var td = e.target.parentNode,
         tarifName = td.dataset.tarif,
         tarifValue;

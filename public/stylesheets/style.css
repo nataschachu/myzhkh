@@ -39,6 +39,11 @@ body
     float: right;
 }
 
+.right-menu a
+{
+    line-height: 28px;
+}
+
 .result-item-total
 {
     font-size: 16px;
