@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>История</title>
+    <% include ../partials/header.ejs %>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/tarif.css" />
+</head>
+<body>
+<div class="container">
+    <h2>История показаний</h2>
+    <table class="tarif-table">
+        <% results.forEach(function(r) { var date = new Date(r.date_add); %>
+            <tr>
+                <td><%= r.name %></td>
+                <td><%= r.value %></td>
+                <td><%= date.getFullYear() %>-<%= date.getMonth() + 1 %>-<%= date.getDate() %></td>
+                <td data-tarif="<%= r.tarif_name %>"><span class="delete">Удалить</span></td>
+            </tr>
+        <% }); %>            
+    </table>
+</div>
+<script src="http://yastatic.net/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/tarif.js"></script>
+</body>
+</html>

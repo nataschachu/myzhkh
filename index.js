@@ -32,6 +32,11 @@ app.get('/save-tarif', function(request, response) {
   response.send();
 });
 
+// страница просмотра/редактирования истории
+app.get('/history', function(request, response) {
+  money.getHistory(response, 'pages/history');
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

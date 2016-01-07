@@ -81,7 +81,6 @@ exports.get = function(request, response) {
 };
 
 exports.getTarifData = function(response, page) {
-    console.log(process.env);
     var results = [];
     
     pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
@@ -94,7 +93,7 @@ exports.getTarifData = function(response, page) {
         
         query.on('end', function() {
             done();
-            return response.render('pages/tarif', { results: results });
+            return response.render(page, { results: results });
         });
     });
 };
@@ -107,6 +106,24 @@ exports.saveTarif = function(request) {
         
         query.on('end', function() {
             done();
+        });
+    });
+};
+
+exports.getHistory = function(response, page) {
+    var results = [];
+    
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
+        var query = client.query("select * from indications where deleted = 0");
+        
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+        
+        query.on('end', function() {
+            done();
+            return response.render(page, { results: results });
         });
     });
 };
