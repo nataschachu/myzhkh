@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Расчет стоимости услуг ЖКХ</title>
-        <meta http-equiv=Content-Type content="text/html;charset=UTF-8">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="apple-touch-icon" sizes="120x120" href="icon120.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="icon152.png">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="viewport" content="width=device-width,maximum-scale=1,initial-scale=1,user-scalable=0">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+        <% include ../partials/header.ejs %>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     </head>
     <body>
+        <div class="right-menu">
+            <a href="./tarif">Тарифы</a>
+            <br/>
+            <a href="./history">История</a>
+        </div>
         <form class="count-money">
             <p class="meter-item">
                Горячая вода:

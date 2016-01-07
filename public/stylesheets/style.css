@@ -9,13 +9,13 @@ body
     display: block;
     font-family: Helvetica,Arial,sans-serif;
     -webkit-appearance: none;
-    width: 70%;
+    width: 50%;
     margin-top: 10px;
     border: 1px solid #999;
     padding: 2px;
     height: 25px;
     font-size: 16px;
-    border-radius: none;
+    border-radius: 0;
 }
 
 .hidden
@@ -32,4 +32,15 @@ body
     padding: 10px 25px;
     border: navy;
     -webkit-appearance: none;
+}
+
+.right-menu
+{
+    float: right;
+}
+
+.result-item-total
+{
+    font-size: 16px;
+    font-weight: bold;
 }

@@ -1,24 +1,12 @@
 var pg = require('pg');
 var conString = "postgres://shoihet:kennyStan8@localhost/mylocaldb";
-
-/*
-pg.connect(process.env.DATABASE_URL, function(err, client) {
-    var result, query;
-    
-    if (err) throw err;
-    
-    query = client.query("SELECT * FROM tarif");
-    
-    query.on("row", function (row, result) {
-        result.addRow(row);
-    });
-    
-    query.on("end", function (result) {
-        console.log(JSON.stringify(result.rows, null, "    "));
-        client.end();
-    });
-});
-*/
+var names = {
+        't1': 'Т1',
+        't2': 'Т3',
+        't3': 'Т3',
+        'cold': 'Холодная вода',
+        'hot': 'Горячая вода'
+    };
 
 function insertData(data) {
     // process.env.DATABASE_URL
@@ -61,7 +49,9 @@ function calcMoney(response) {
         
         // Stream results back one row at a time
         query.on('row', function(row) {
-            results.push(row);
+            var tmpRow = { name: names[row.name], summ: row.summ };
+            
+            results.push(tmpRow);
         });
         
         query.on('end', function() {
@@ -90,4 +80,32 @@ exports.get = function(request, response) {
     calcMoney(response);
 };
 
+exports.getTarifData = function(response, page) {
+    var results = [];
+    
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        var query = client.query("select * from tarif");
+        
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            results.push(row);
+        });
+        
+        query.on('end', function() {
+            done();
+            return response.render('pages/tarif', { results: results });
+        });
+    });
+};
 
+exports.saveTarif = function(request) {
+    var params = request.query;
+    
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        var query = client.query("update tarif set tarif_value='" + params.tarifValue + "' where tarif_name='" + params.tarifName + "'");
+        
+        query.on('end', function() {
+            done();
+        });
+    });
+};

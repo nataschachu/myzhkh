@@ -10,13 +10,26 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+// морда
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+// аяксовая ручка для расчета/записи новых показаний
 app.get('/get-money', function(request, response) {
   //response.jsonp(money.get(request));
   money.get(request, response);
+});
+
+// страница просмотра/редактирования тарифов
+app.get('/tarif', function(request, response) {
+  money.getTarifData(response, 'pages/tarif');
+});
+
+// сохранение новых тарифов
+app.get('/save-tarif', function(request, response) {
+  money.saveTarif(request);
+  response.send();
 });
 
 app.listen(app.get('port'), function() {

@@ -1,0 +1,41 @@
+body
+{
+    font-family: Arial, Helvetice, sans-serif;
+    font-size: 15px;
+}
+
+.tarif-table
+{
+    border-collapse: collapse;
+}
+
+.tarif-table td
+{
+    padding: 0 5px;
+    height: 35px;
+    border: 1px solid magenta;
+}
+
+.submit-button
+{
+    border-radius: 3px;
+    font-size: 16px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    padding: 10px 25px;
+    border: navy;
+    -webkit-appearance: none;
+}
+
+input
+{
+    display: inline-block;
+    font-family: Helvetica,Arial,sans-serif;
+    -webkit-appearance: none;
+    border: 1px solid #999;
+    padding: 2px;
+    font-size: 16px;
+    border-radius: 0;
+    width: 6em;
+    margin-right: 4px;
+}
