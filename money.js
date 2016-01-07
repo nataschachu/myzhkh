@@ -10,7 +10,7 @@ var names = {
 
 function insertData(data) {
     // process.env.DATABASE_URL
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
         client.query("INSERT INTO indications VALUES ('" + data.name + "'," + data.value + ", current_date, 0)");
         done();
     });
@@ -18,7 +18,7 @@ function insertData(data) {
 
 function clear() {
     // process.env.DATABASE_URL
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
         client.query("DELETE FROM indications WHERE date_add = current_date");
         done();
     });
@@ -28,7 +28,7 @@ function calcMoney(response) {
     var results = [];
     
     // process.env.DATABASE_URL
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
         var query = client.query("select curr.name, (curr.value - prev.value) * tarif.tarif_value summ\
             from  (select name, value \
                     from indications current\
@@ -81,9 +81,10 @@ exports.get = function(request, response) {
 };
 
 exports.getTarifData = function(response, page) {
+    console.log(process.env);
     var results = [];
     
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
         var query = client.query("select * from tarif");
         
         // Stream results back one row at a time
@@ -101,7 +102,7 @@ exports.getTarifData = function(response, page) {
 exports.saveTarif = function(request) {
     var params = request.query;
     
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
         var query = client.query("update tarif set tarif_value='" + params.tarifValue + "' where tarif_name='" + params.tarifName + "'");
         
         query.on('end', function() {
