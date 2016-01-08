@@ -41,7 +41,8 @@ input
 }
 
 .change,
-.save
+.save,
+.delete
 {
     cursor: pointer;
 }

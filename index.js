@@ -37,6 +37,12 @@ app.get('/history', function(request, response) {
   money.getHistory(response, 'pages/history');
 });
 
+// удаление из истории показаний
+app.get('/delete-indication', function(request, response) {
+  money.deleteIndication(request);
+  response.send();
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

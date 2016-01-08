@@ -9,17 +9,18 @@
 <div class="container">
     <h2>История показаний</h2>
     <table class="tarif-table">
-        <% results.forEach(function(r) { var date = new Date(r.date_add); %>
+        <% results.forEach(function(r) { var date = new Date(r.date_add); var addZero = function(num) { return num < 10 ? '0' + num : num; }; %>
+            <% var dateAdd = date.getFullYear() + '-' + addZero(date.getMonth() + 1) + '-' + addZero(date.getDate()) %>
             <tr>
                 <td><%= r.name %></td>
                 <td><%= r.value %></td>
-                <td><%= date.getFullYear() %>-<%= date.getMonth() + 1 %>-<%= date.getDate() %></td>
-                <td data-tarif="<%= r.tarif_name %>"><span class="delete">Удалить</span></td>
+                <td><%= dateAdd %></td>
+                <td data-tarif="<%= r.name %>" data-date="<%= dateAdd %>"><span class="delete">Удалить</span></td>
             </tr>
         <% }); %>            
     </table>
 </div>
 <script src="http://yastatic.net/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/tarif.js"></script>
+<script src="/js/history.js"></script>
 </body>
 </html>

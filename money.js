@@ -127,3 +127,15 @@ exports.getHistory = function(response, page) {
         });
     });
 };
+
+exports.deleteIndication = function(request) {
+    var params = request.query;
+    
+    pg.connect(process.env.DATABASE_URL || conString, function(err, client, done) {
+        var query = client.query("delete from indications where name='" + params.name + "' and date_add='" + params.date + "'");
+        
+        query.on('end', function() {
+            done();
+        });
+    });
+};
